@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@rules_foreign_cc//tools/build_defs:configure.bzl", "configure_make")
-
+# load("@rules_foreign_cc//tools/build_defs:configure.bzl", "configure_make")
+load("@rules_foreign_cc//foreign_cc:defs.bzl", "configure_make")
 configure_make(
     name = "gmp",
     configure_env_vars = select({
@@ -46,9 +46,11 @@ configure_make(
         # for the quotes: one for C++, one for sed, one for Bazel.
         "sed '/^#define __GMP_CFLAGS/s/\"redacted\"/\\\\\"redacted\\\\\"/g' gmp.h > gmp.h.patched",
         "mv gmp.h.patched gmp.h",
-        "make install",
+        # "make install",
+        "make -j4",
+		"make install",
     ],
-    static_libraries = [
+    out_static_libs = [
         "libgmp.a",
         "libgmpxx.a",
     ],

@@ -1,3 +1,19 @@
+
+<!-- http_archive(
+    name = "gmp_rules",
+    sha256 = "6b138c773afbc41ede0233f873d2508c6ea9dc71c2809ea56aa1f8c4b658c743",
+    strip_prefix = "gmp-master",
+    urls = ["https://github.com/xfap/gmp/archive/refs/heads/master.zip"],
+)
+
+load("@phst_gmp//:def.bzl", "phst_gmp_repos")
+
+phst_gmp_repos() -->
+
+---
+
+forked from [phst/gmp](https://github.com/phst/gmp.git)
+
 This repository contains [Bazel](https://bazel.build/) targets for
 version 6.1.2 of the [GNU Multiple Precision Arithmetic
 Library](https://gmplib.org/).  To use, add the following to your [WORKSPACE

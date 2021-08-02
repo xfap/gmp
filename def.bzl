@@ -14,21 +14,31 @@
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-def phst_gmp_repos():
-    """Adds required dependencies for the phst_gmp workspace."""
+def rules_gmp_repos():
+    """Adds required dependencies for the rules_gmp workspace."""
     http_archive(
         name = "gmp",
-        build_file = "@phst_gmp//:gmp.BUILD",
+        build_file = "@rules_gmp//:gmp.BUILD",
         sha256 = "87b565e89a9a684fe4ebeeddb8399dce2599f9c9049854ca8c0dfbdea0e21912",
         strip_prefix = "gmp-6.1.2",
         urls = ["https://gmplib.org/download/gmp/gmp-6.1.2.tar.xz"],
     )
+    # http_archive(
+    #     name = "rules_foreign_cc",
+    #     sha256 = "2a06df9d6e8dd47a9a4ee97ac84d63f6a59e720df5d8c8db6b81b945a56f9768",
+    #     strip_prefix = "rules_foreign_cc-ed3db61a55c13da311d875460938c42ee8bbc2a5/",
+    #     urls = ["https://github.com/bazelbuild/rules_foreign_cc/archive/ed3db61a55c13da311d875460938c42ee8bbc2a5.zip"],
+    # )
+    # Rule repository
     http_archive(
         name = "rules_foreign_cc",
-        sha256 = "2a06df9d6e8dd47a9a4ee97ac84d63f6a59e720df5d8c8db6b81b945a56f9768",
-        strip_prefix = "rules_foreign_cc-ed3db61a55c13da311d875460938c42ee8bbc2a5/",
-        urls = ["https://github.com/bazelbuild/rules_foreign_cc/archive/ed3db61a55c13da311d875460938c42ee8bbc2a5.zip"],
+        sha256 = "d54742ffbdc6924f222d2179f0e10e911c5c659c4ae74158e9fe827aad862ac6",
+        strip_prefix = "rules_foreign_cc-0.2.0",
+        urls = [
+            "https://github.com/bazelbuild/rules_foreign_cc/archive/refs/tags/0.2.0.tar.gz",
+        ],
     )
+    
 
 def _copy_outputs(ctx):
     hdrs = _copy_headers(ctx)
