@@ -14,6 +14,7 @@
 
 # load("@rules_foreign_cc//tools/build_defs:configure.bzl", "configure_make")
 load("@rules_foreign_cc//foreign_cc:defs.bzl", "configure_make")
+
 configure_make(
     name = "gmp",
     # https://docs.bazel.build/versions/4.1.0/be/functions.html#select
@@ -28,7 +29,9 @@ configure_make(
             # https://github.com/bazelbuild/rules_foreign_cc/issues/185
             "AR": "",
         },
-        "//conditions:default": ["@platforms//:incompatible"],
+        "//conditions:default": {
+            "@platforms//:incompatible",
+        },
     }),
     configure_options = [
         "--enable-cxx",
@@ -50,7 +53,7 @@ configure_make(
         "mv gmp.h.patched gmp.h",
         # "make install",
         "make -j4",
-		"make install",
+        "make install",
     ],
     out_static_libs = [
         "libgmp.a",
