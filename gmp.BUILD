@@ -30,7 +30,6 @@ configure_make(
             "AR": "",
         },
         "//conditions:default": {
-            "@platforms//:incompatible",
         },
     }),
     configure_options = [

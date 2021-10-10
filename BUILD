@@ -30,7 +30,7 @@ _OPTS = [
         "-Weverything",
         "--system-header-prefix=gmp",
     ],
-    "//conditions:default": ["@platforms//:incompatible"],
+    "//conditions:default": [],
 })
 
 _COPTS = _OPTS + ["-std=c11"]
