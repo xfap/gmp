@@ -16,6 +16,7 @@
 load("@rules_foreign_cc//foreign_cc:defs.bzl", "configure_make")
 configure_make(
     name = "gmp",
+    # https://docs.bazel.build/versions/4.1.0/be/functions.html#select
     configure_env_vars = select({
         ":linux": {
             # https://github.com/bazelbuild/rules_foreign_cc/issues/296
@@ -27,6 +28,7 @@ configure_make(
             # https://github.com/bazelbuild/rules_foreign_cc/issues/185
             "AR": "",
         },
+        "//conditions:default": ["@platforms//:incompatible"],
     }),
     configure_options = [
         "--enable-cxx",
@@ -71,3 +73,8 @@ config_setting(
     name = "macos",
     constraint_values = ["@platforms//os:osx"],
 )
+
+# config_setting(
+#     name = "windows",
+#     constraint_values = ["@platforms//"],
+# )
